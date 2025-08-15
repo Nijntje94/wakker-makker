@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "Wakker-Makker",
+    "slug": "wakker-makker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "platforms": ["ios", "android", "web"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.nijntje94.wakkermakker",
+      "versionCode": 1
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bbbfbd13-dd41-4ff5-a477-dd5b4e69fcae"
+      }
+    }
+  }
+}
