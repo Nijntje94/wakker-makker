@@ -1,153 +1,194 @@
-# 🌅 Wakker-Makker
+# 🚨 Wakker-Makker
 
-<div align="center">
-  <img src="assets/icon.png" alt="Wakker-Makker Logo" width="200"/>
-  
-  ### Jouw Slimme Wek-Maatje! ⏰
-  ### 100% GRATIS - GEEN ADVERTENTIES - OPEN SOURCE
-  
- [![License](https://img.shields.io/badge/license-AGPLv3-blue.svg)](LICENSE)
- [![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Android-lightgrey.svg)](https://expo.dev)
-  [![React Native](https://img.shields.io/badge/React%20Native-0.72.6-blue.svg)](https://reactnative.dev)
-  [![Expo](https://img.shields.io/badge/Expo-49.0.0-black.svg)](https://expo.dev)
-  [![Price](https://img.shields.io/badge/price-FREE-green.svg)](https://github.com/jouw-gebruikersnaam/wakker-makker)
-</div>
+> Een krachtige, open-source wekker app met geavanceerde stop-methodes en smart reminders
 
-## 📱 Over Wakker-Makker
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![React Native](https://img.shields.io/badge/React%20Native-0.74-blue.svg)](https://reactnative.dev/)
+[![Expo SDK](https://img.shields.io/badge/Expo%20SDK-51-black.svg)](https://expo.dev/)
+[![Web Compatible](https://img.shields.io/badge/Web-Compatible-green.svg)](https://expo.dev/tools#web)
 
-Wakker-Makker is een **100% gratis** wekker app zonder advertenties, zonder in-app aankopen, en zonder verborgen kosten. Het is jouw persoonlijke ochtend-assistent die ervoor zorgt dat je écht wakker wordt! Met unieke uitzetmethodes zoals barcode scanning, rekensommen en schudden, blijf je niet meer snoozen.
+![Wakker-Makker App Screenshot](https://via.placeholder.com/800x400/6200ee/ffffff?text=Wakker-Makker+Screenshots)
 
-### 🎁 Altijd Gratis
-- **Geen advertenties** - Nooit
-- **Geen in-app aankopen** - Alles is gratis
-- **Geen data verzameling** - Je privacy is veilig
-- **Open source** - Bekijk en verbeter de code
+## ✨ Features
 
-### ✨ Features
+### 🔥 Geavanceerde Wekker Opties
+- **📷 Barcode Stop** - Scan een specifieke barcode om de wekker uit te zetten
+- **🧮 Rekensom Challenge** - Los een wiskundige vergelijking op om wakker te worden
+- **📱 Schud Functie** - Schud je telefoon 5 seconden om de wekker te stoppen
+- **✅ Normale Stop** - Klassieke stop knop voor eenvoudig gebruik
 
-#### 🎯 Slimme Uitzetmethodes
-- **Normaal** - Klassiek stoppen met één tik
-- **Barcode Scanner** - Scan een specifieke barcode om uit te zetten
-- **Rekensommen** - Los een som op om wakker te worden
-- **Shake-It** - Schud je telefoon 5 seconden lang
+### ⏰ Smart Wekker Features
+- **📅 Weekdag Selectie** - Stel verschillende dagen in per wekker
+- **🔊 Volume Opties** - Geleidelijk harder worden of direct vol volume
+- **💬 Aangepaste Tekst** - Persoonlijke boodschappen bij je wekker
+- **🎵 Geluid Keuze** - Selecteer uit lokale muziek of Spotify playlists
 
-#### 🎵 Muziek Integratie
-- Kies muziek van je telefoon
-- Spotify integratie voor playlists en nummers
-- Geleidelijk of direct volume
-- Preview functie voor het testen van geluiden
+### 📝 Intelligent Reminder Systeem
+- **📅 Datum & Tijd Planner** - Flexibele planning met datum suggesties
+- **🔔 Volume Instellingen** - Aanpasbare volume voor notificaties
+- **📋 Uitgebreide Beschrijvingen** - Voeg context toe aan je reminders
+- **⏭️ Morgen Functie** - Verschuif reminders eenvoudig naar de volgende dag
 
-#### ⚙️ Aanpasbare Instellingen
-- 24-uurs of 12-uurs (AM/PM) klok
-- Nederlands (NL) en Engels (ENG) taalondersteuning
-- Instelbare snooze tijden voor wekkers en reminders
-- Donker thema voor 's nachts
+### ⚙️ Aanpassingen
+- **🕐 Tijdformaat** - 24-uurs of 12-uurs (AM/PM) weergave
+- **🌍 Meertalig** - Nederlands en Engels ondersteuning
+- **⏱️ Sluimer Instellingen** - Aanpasbare sluimertijden voor wekkers en reminders
+- **💾 Lokale Opslag** - Al je instellingen worden lokaal opgeslagen
 
-#### 📅 Wekkers & Reminders
-- Wekkers met specifieke dagen van de week
-- Eenmalige reminders met titel en beschrijving
-- Aan/uit toggle voor individuele items
-- Bewerk of verwijder met één tik
-
-## 🚀 Installatie
+## 🚀 Aan de slag
 
 ### Vereisten
-- Node.js (v16 of hoger)
-- npm of yarn
-- Expo CLI
-- iOS Simulator (Mac) of Android Emulator
+- [Node.js](https://nodejs.org/) (v16 of hoger)
+- [npm](https://www.npmjs.com/) of [yarn](https://yarnpkg.com/)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
 
-### Stappen
+### Installatie
 
 1. **Clone de repository**
-```bash
-git clone https://github.com/jouw-gebruikersnaam/wakker-makker.git
-cd wakker-makker
-```
+   ```bash
+   git clone https://github.com/Nijntje94/wakker-makker.git
+   cd wakker-makker
+   ```
 
 2. **Installeer dependencies**
-```bash
-npm install
-# of
-yarn install
-```
+   ```bash
+   npm install --legacy-peer-deps
+   ```
 
 3. **Start de development server**
+   ```bash
+   npx expo start
+   ```
+
+### 🌐 Web Development
+Voor web development (perfecte voor testen):
 ```bash
-npm start
-# of
-yarn start
+npx expo start --web
 ```
 
-4. **Run op je apparaat**
-- Download de Expo Go app
-- Scan de QR code
-- Of gebruik een emulator:
+### 📱 Mobile Development
+Voor echte telefoon testing:
+
+**Android:**
 ```bash
-npm run ios     # Voor iOS
-npm run android # Voor Android
+# Download Expo Go app en scan QR code
+npx expo start --android
 ```
 
-## 🛠 Development
+**iOS:**
+```bash
+# Download Expo Go app en scan QR code  
+npx expo start --ios
+```
 
-### Project Structuur
+## 🏗️ Project Structuur
+
 ```
 wakker-makker/
-├── App.js                    # Hoofdcomponent
-├── components/              
-│   ├── AlarmDismissScreen.js # Wekker dismiss scherm
-│   ├── MusicSelector.js      # Muziek selectie
-│   └── WakkerMakkerSplash.js # Splash screen
-├── assets/                   # Afbeeldingen en geluiden
-├── utils/                    # Helper functies
-└── constants/               # App constanten
+├── components/          # Herbruikbare UI componenten
+│   ├── Clock.js         # Real-time klok weergave
+│   ├── AlarmItem.js     # Wekker lijst item
+│   └── ReminderItem.js  # Reminder lijst item
+├── context/             # State management
+│   ├── SettingsContext.js   # App instellingen
+│   ├── AlarmsContext.js     # Wekkers beheer
+│   └── RemindersContext.js  # Reminders beheer
+├── screens/             # App schermen
+│   ├── HomeScreen.js        # Hoofdscherm met overzicht
+│   ├── SettingsScreen.js    # Instellingen pagina
+│   ├── CreateAlarmScreen.js # Nieuwe wekker maken
+│   ├── CreateReminderScreen.js # Nieuwe reminder maken
+│   ├── AlarmRingingScreen.js   # Wekker afgaan scherm
+│   └── [...]               # Overige schermen
+├── App.js              # Hoofd app component
+├── package.json        # Project dependencies
+└── README.md          # Dit bestand
 ```
 
-### Spotify Setup
-1. Maak een app op [Spotify Developer Dashboard](https://developer.spotify.com)
-2. Voeg redirect URI toe: `exp://localhost:19000/--/spotify-redirect`
-3. Kopieer je Client ID naar `MusicSelector.js`
+## 🛠️ Technische Stack
 
-## 🐛 Bekende Issues & Oplossingen
+- **Framework:** React Native met Expo
+- **Navigatie:** React Navigation v6
+- **State Management:** React Context + useState
+- **Styling:** StyleSheet (React Native)
+- **Opslag:** localStorage (web) / AsyncStorage (mobile)
+- **Platforms:** iOS, Android, Web
 
-**Barcode scanner is zwart**
-- Camera permissies checken
-- Herstart de app na permissie toekenning
+## 📋 Roadmap
+
+### 🎯 Volgende Features (v1.1)
+- [ ] 🎵 **Muziek Integratie** - Lokale muziek bibliotheek ondersteuning
+- [ ] 🎧 **Spotify Connect** - Gebruik Spotify playlists als wekker geluid
+- [ ] 📷 **Camera Integratie** - Echte barcode scanner functionaliteit
+- [ ] 🔢 **Dynamische Rekensommen** - Moeilijkheidsgraad aanpassing
+- [ ] 📱 **Shake Detectie** - Gyroscoop/accelerometer integratie
 
 ## 🤝 Bijdragen
 
-Bijdragen zijn welkom! 
+Bijdragen zijn van harte welkom! Hier is hoe je kunt helpen:
 
-1. Fork het project
-2. Maak een feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit je wijzigingen (`git commit -m 'Add AmazingFeature'`)
-4. Push naar de branch (`git push origin feature/AmazingFeature`)
-5. Open een Pull Request
+1. **Fork** de repository
+2. **Clone** je fork lokaal
+3. **Maak** een feature branch (`git checkout -b feature/geweldige-functie`)
+4. **Commit** je wijzigingen (`git commit -m 'Voeg geweldige functie toe'`)
+5. **Push** naar de branch (`git push origin feature/geweldige-functie`)
+6. **Open** een Pull Request
+
+### 🐛 Bug Reports
+Vond je een bug? [Open een issue](https://github.com/Nijntje94/wakker-makker/issues) met:
+- Beschrijving van het probleem
+- Stappen om te reproduceren
+- Verwacht vs. werkelijk gedrag
+- Screenshots (indien van toepassing)
+
+### 💡 Feature Requests
+Heb je een idee? [Deel het met ons](https://github.com/Nijntje94/wakker-makker/issues) door een feature request aan te maken.
+
+## 📱 App Store Releases
+
+### Google Play Store
+*Coming Soon* - Momenteel in development
+
+### Apple App Store  
+*Coming Soon* - Momenteel in development
 
 ## 📄 Licentie
 
-Dit project is gelicenseerd onder de GNU Affero General Public License v3.0 (AGPLv3) – zie het [LICENSE](LICENSE) bestand voor details.
+Dit project is gelicenseerd onder de **GNU Affero General Public License v3.0 (AGPL-3.0)**.
 
-## 👏 Credits
+Dit betekent dat:
+- ✅ Je de app vrij kunt gebruiken
+- ✅ Je de broncode kunt bekijken en wijzigen
+- ✅ Je je eigen versie kunt maken
+- ⚠️ Als je de app distribueert, moet je ook de broncode beschikbaar maken
+- ⚠️ Als je de app gebruikt in een netwerk service, moet je de broncode delen
 
-Gemaakt met ❤️ door Nijntje94
+Zie het [LICENSE](LICENSE) bestand voor volledige details.
 
-**Deze app is en blijft voor altijd gratis als een service aan de community!**
+## 💬 Community & Support
 
-### Gebruikte Libraries
-- [React Native](https://reactnative.dev)
-- [Expo](https://expo.dev)
-- [React Navigation](https://reactnavigation.org)
-- [Expo AV](https://docs.expo.dev/versions/latest/sdk/av/)
-- [Expo Notifications](https://docs.expo.dev/versions/latest/sdk/notifications/)
+- **🐛 Bug Reports:** [GitHub Issues](https://github.com/Nijntje94/wakker-makker/issues)
+- **💬 Discussies:** [GitHub Discussions](https://github.com/Nijntje94/wakker-makker/discussions)
 
-## 📞 Contact & Support
+## ☕ Steun het Project
 
-- **Bug Reports**: [GitHub Issues](https://github.com/nijntje94/wakker-makker/issues)
-- **Website**: [brainfork.makkers.net](https://brainfork.makkers.net)
+Vind je Wakker-Makker nuttig? Overweeg om de ontwikkeling te steunen:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support-orange?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/nijntje94)
+
+## 🙏 Acknowledgments
+
+- **React Native Team** voor het geweldige framework
+- **Expo Team** voor de ontwikkeltools
+- **Open Source Community** voor inspiratie en feedback
+- **Beta Testers** voor het vroegtijdig testen
 
 ---
 
 <div align="center">
-  <b>Wakker-Makker</b> - Omdat opstaan een kunst is! 🎨
+
+**Gemaakt met ❤️ voor betere ochtenden**
+
+[⭐ Star deze repo](https://github.com/Nijntje94/wakker-makker) als het je heeft geholpen!
+
 </div>
