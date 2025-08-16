@@ -11,6 +11,8 @@ import {
 
 import { useSettings } from '../context/SettingsContext';
 import { useReminders } from '../context/RemindersContext';
+import MusicPicker from '../components/MusicPicker';
+import musicService from '../services/MusicService';
 
 export default function CreateReminderScreen({ navigation }) {
   const { t } = useSettings();
@@ -22,6 +24,18 @@ export default function CreateReminderScreen({ navigation }) {
   const [hours, setHours] = useState('14');
   const [minutes, setMinutes] = useState('30');
   const [volumeType, setVolumeType] = useState('gradual'); // 'gradual' or 'full'
+  const [selectedSound, setSelectedSound] = useState({
+    id: 'default-2',
+    name: 'Vrolijke Bel',
+    uri: 'https://www.soundjay.com/misc/sounds/bell-ringing-01.wav',
+    type: 'default'
+  });
+  const [showMusicPicker, setShowMusicPicker] = useState(false);
+
+  const handleSoundSelect = (sound) => {
+    setSelectedSound(sound);
+    console.log('Reminder geluid geselecteerd:', sound.name);
+  };
 
   const saveReminder = () => {
     // Validaties
@@ -57,7 +71,7 @@ export default function CreateReminderScreen({ navigation }) {
       date,
       time: `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`,
       volumeType,
-      sound: 'default',
+      sound: selectedSound,
     };
 
     addReminder(reminderData);
@@ -218,10 +232,16 @@ export default function CreateReminderScreen({ navigation }) {
           <Text style={styles.sectionTitle}>{t('reminderSound')}</Text>
           <TouchableOpacity 
             style={styles.soundButton}
-            onPress={() => alert('Geluid selectie - komt binnenkort!')}
+            onPress={() => setShowMusicPicker(true)}
           >
             <Text style={styles.soundIcon}>🔔</Text>
-            <Text style={styles.soundText}>Standaard notificatie geluid</Text>
+            <View style={styles.soundInfo}>
+              <Text style={styles.soundText}>{selectedSound.name}</Text>
+              <Text style={styles.soundType}>
+                {selectedSound.type === 'default' ? 'Standaard' : 
+                 selectedSound.type === 'local' ? 'Lokale muziek' : 'Eigen bestand'}
+              </Text>
+            </View>
             <Text style={styles.soundArrow}>▶</Text>
           </TouchableOpacity>
         </View>
@@ -232,6 +252,14 @@ export default function CreateReminderScreen({ navigation }) {
         </TouchableOpacity>
 
       </ScrollView>
+
+      {/* Music Picker Modal */}
+      <MusicPicker
+        visible={showMusicPicker}
+        onClose={() => setShowMusicPicker(false)}
+        onSelectSound={handleSoundSelect}
+        selectedSoundId={selectedSound?.id}
+      />
     </View>
   );
 }
@@ -348,10 +376,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginRight: 15,
   },
-  soundText: {
+  soundInfo: {
     flex: 1,
+  },
+  soundText: {
     color: 'white',
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  soundType: {
+    color: 'rgba(255,255,255,0.7)',
+    fontSize: 12,
+    marginTop: 2,
   },
   soundArrow: {
     color: 'rgba(255,255,255,0.7)',

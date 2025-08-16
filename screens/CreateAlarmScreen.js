@@ -12,6 +12,8 @@ import {
 
 import { useSettings } from '../context/SettingsContext';
 import { useAlarms } from '../context/AlarmsContext';
+import MusicPicker from '../components/MusicPicker';
+import musicService from '../services/MusicService';
 
 export default function CreateAlarmScreen({ navigation }) {
   const { t } = useSettings();
@@ -24,6 +26,13 @@ export default function CreateAlarmScreen({ navigation }) {
   const [volumeType, setVolumeType] = useState('gradual'); // 'gradual' or 'full'
   const [stopMethod, setStopMethod] = useState('normal'); // 'normal', 'barcode', 'math', 'shake'
   const [barcodeData, setBarcodeData] = useState('');
+  const [selectedSound, setSelectedSound] = useState({
+    id: 'default-1',
+    name: 'Klassieke Wekker',
+    uri: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+    type: 'default'
+  });
+  const [showMusicPicker, setShowMusicPicker] = useState(false);
 
   const dayLabels = [t('mon'), t('tue'), t('wed'), t('thu'), t('fri'), t('sat'), t('sun')];
 
@@ -31,6 +40,11 @@ export default function CreateAlarmScreen({ navigation }) {
     const newDays = [...days];
     newDays[index] = !newDays[index];
     setDays(newDays);
+  };
+
+  const handleSoundSelect = (sound) => {
+    setSelectedSound(sound);
+    console.log('Geluid geselecteerd:', sound.name);
   };
 
   const saveAlarm = () => {
@@ -45,6 +59,11 @@ export default function CreateAlarmScreen({ navigation }) {
       return;
     }
 
+    if (stopMethod === 'barcode' && !barcodeData.trim()) {
+      alert('Voer barcode data in voor de barcode stop methode.');
+      return;
+    }
+
     const alarmData = {
       time: `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`,
       days,
@@ -52,7 +71,7 @@ export default function CreateAlarmScreen({ navigation }) {
       volumeType,
       stopMethod,
       barcodeData: stopMethod === 'barcode' ? barcodeData : '',
-      sound: 'default',
+      sound: selectedSound,
     };
 
     addAlarm(alarmData);
@@ -200,10 +219,16 @@ export default function CreateAlarmScreen({ navigation }) {
           <Text style={styles.sectionTitle}>{t('alarmSound')}</Text>
           <TouchableOpacity 
             style={styles.soundButton}
-            onPress={() => alert('Geluid selectie - komt binnenkort!')}
+            onPress={() => setShowMusicPicker(true)}
           >
             <Text style={styles.soundIcon}>🎵</Text>
-            <Text style={styles.soundText}>Standaard wekker geluid</Text>
+            <View style={styles.soundInfo}>
+              <Text style={styles.soundText}>{selectedSound.name}</Text>
+              <Text style={styles.soundType}>
+                {selectedSound.type === 'default' ? 'Standaard' : 
+                 selectedSound.type === 'local' ? 'Lokale muziek' : 'Eigen bestand'}
+              </Text>
+            </View>
             <Text style={styles.soundArrow}>▶</Text>
           </TouchableOpacity>
         </View>
@@ -214,6 +239,14 @@ export default function CreateAlarmScreen({ navigation }) {
         </TouchableOpacity>
 
       </ScrollView>
+
+      {/* Music Picker Modal */}
+      <MusicPicker
+        visible={showMusicPicker}
+        onClose={() => setShowMusicPicker(false)}
+        onSelectSound={handleSoundSelect}
+        selectedSoundId={selectedSound?.id}
+      />
     </View>
   );
 }
@@ -375,10 +408,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginRight: 15,
   },
-  soundText: {
+  soundInfo: {
     flex: 1,
+  },
+  soundText: {
     color: 'white',
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  soundType: {
+    color: 'rgba(255,255,255,0.7)',
+    fontSize: 12,
+    marginTop: 2,
   },
   soundArrow: {
     color: 'rgba(255,255,255,0.7)',

@@ -8,7 +8,6 @@ import {
   Modal,
   Alert,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useSettings } from '../context/SettingsContext';
 import { useAlarms } from '../context/AlarmsContext';
 
@@ -28,10 +27,10 @@ export default function AlarmItem({ alarm, onAction }) {
 
   const getStopMethodIcon = () => {
     switch (alarm.stopMethod) {
-      case 'barcode': return 'barcode-outline';
-      case 'math': return 'calculator-outline';
-      case 'shake': return 'phone-portrait-outline';
-      default: return 'checkmark-circle-outline';
+      case 'barcode': return '📷';
+      case 'math': return '🧮';
+      case 'shake': return '📱';
+      default: return '✓';
     }
   };
 
@@ -44,10 +43,23 @@ export default function AlarmItem({ alarm, onAction }) {
     }
   };
 
+  const getSoundIcon = () => {
+    switch (alarm.sound?.type) {
+      case 'local': return '🎵';
+      case 'custom': return '📁';
+      default: return '🔔';
+    }
+  };
+
   const nextAlarmTime = getNextAlarmTime(alarm);
   const alarmTime = new Date();
   const [hours, minutes] = alarm.time.split(':').map(Number);
   alarmTime.setHours(hours, minutes, 0, 0);
+
+  const testAlarm = () => {
+    setShowOptions(false);
+    alert(`Test wekker: ${alarm.sound?.name || 'Geen geluid'} wordt afgespeeld!`);
+  };
 
   return (
     <View style={[styles.container, !alarm.isEnabled && styles.disabledContainer]}>
@@ -69,21 +81,26 @@ export default function AlarmItem({ alarm, onAction }) {
             </Text>
           )}
           <View style={styles.infoRow}>
-            <Ionicons 
-              name={getStopMethodIcon()} 
-              size={16} 
-              color={alarm.isEnabled ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.3)"} 
-            />
+            <Text style={[styles.infoIcon, !alarm.isEnabled && styles.disabledText]}>
+              {getStopMethodIcon()}
+            </Text>
             <Text style={[styles.infoText, !alarm.isEnabled && styles.disabledText]}>
               {getStopMethodText()}
             </Text>
-            <Ionicons 
-              name={alarm.volumeType === 'gradual' ? 'volume-low-outline' : 'volume-high-outline'} 
-              size={16} 
-              color={alarm.isEnabled ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.3)"} 
-              style={styles.volumeIcon}
-            />
+            <Text style={[styles.infoIcon, !alarm.isEnabled && styles.disabledText]}>
+              {alarm.volumeType === 'gradual' ? '🔉' : '🔊'}
+            </Text>
           </View>
+          {alarm.sound && (
+            <View style={styles.soundRow}>
+              <Text style={[styles.soundIcon, !alarm.isEnabled && styles.disabledText]}>
+                {getSoundIcon()}
+              </Text>
+              <Text style={[styles.soundText, !alarm.isEnabled && styles.disabledText]}>
+                {alarm.sound.name}
+              </Text>
+            </View>
+          )}
           {nextAlarmTime && alarm.isEnabled && (
             <Text style={styles.nextAlarm}>
               Volgende alarm: {formatTime(nextAlarmTime)} op {nextAlarmTime.toLocaleDateString('nl-NL', { weekday: 'long' })}
@@ -118,12 +135,20 @@ export default function AlarmItem({ alarm, onAction }) {
             
             <TouchableOpacity
               style={styles.optionItem}
+              onPress={testAlarm}
+            >
+              <Text style={styles.optionIcon}>🧪</Text>
+              <Text style={styles.optionText}>Test Wekker</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+              style={styles.optionItem}
               onPress={() => {
                 setShowOptions(false);
                 onAction('edit');
               }}
             >
-              <Ionicons name="create-outline" size={24} color="#6200ee" />
+              <Text style={styles.optionIcon}>✏️</Text>
               <Text style={styles.optionText}>{t('edit')}</Text>
             </TouchableOpacity>
             
@@ -134,7 +159,7 @@ export default function AlarmItem({ alarm, onAction }) {
                 onAction('delete');
               }}
             >
-              <Ionicons name="trash-outline" size={24} color="#f44336" />
+              <Text style={styles.optionIcon}>🗑️</Text>
               <Text style={[styles.optionText, styles.deleteText]}>{t('delete')}</Text>
             </TouchableOpacity>
           </View>
@@ -187,13 +212,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 5,
   },
+  infoIcon: {
+    fontSize: 14,
+    marginRight: 5,
+  },
   infoText: {
     fontSize: 12,
     color: 'rgba(255,255,255,0.7)',
-    marginLeft: 5,
+    marginRight: 15,
   },
-  volumeIcon: {
-    marginLeft: 15,
+  soundRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 5,
+  },
+  soundIcon: {
+    fontSize: 14,
+    marginRight: 5,
+  },
+  soundText: {
+    fontSize: 12,
+    color: 'rgba(255,255,255,0.7)',
+    fontStyle: 'italic',
   },
   nextAlarm: {
     fontSize: 11,
@@ -234,12 +274,18 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 10,
   },
+  optionIcon: {
+    fontSize: 20,
+    marginRight: 15,
+  },
   optionText: {
     fontSize: 16,
-    marginLeft: 15,
     color: '#333',
   },
   deleteOption: {
     marginTop: 5,
+  },
+  deleteText: {
+    color: '#f44336',
   },
 });

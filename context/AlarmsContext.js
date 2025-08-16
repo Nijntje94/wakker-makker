@@ -20,7 +20,13 @@ export const AlarmsProvider = ({ children }) => {
       text: 'Opstaan voor werk!',
       isEnabled: true,
       stopMethod: 'normal',
-      volumeType: 'gradual'
+      volumeType: 'gradual',
+      sound: {
+        id: 'default-1',
+        name: 'Klassieke Wekker',
+        uri: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+        type: 'default'
+      }
     },
     {
       id: '2',
@@ -29,7 +35,13 @@ export const AlarmsProvider = ({ children }) => {
       text: 'Weekend ontbijt',
       isEnabled: false,
       stopMethod: 'math',
-      volumeType: 'full'
+      volumeType: 'full',
+      sound: {
+        id: 'default-2',
+        name: 'Vrolijke Bel',
+        uri: 'https://www.soundjay.com/misc/sounds/bell-ringing-01.wav',
+        type: 'default'
+      }
     }
   ]);
   
